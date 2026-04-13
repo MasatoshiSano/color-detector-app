@@ -116,9 +116,8 @@ case "$CMD" in
         ;;
 
     logs)
-        shift
-        shift 2>/dev/null || true
-        docker compose logs -f "$@"
+        shift  # "logs" を除去、残りはサービス名など
+        docker compose --profile ui --profile runtime logs -f "$@"
         ;;
 
     reload)
